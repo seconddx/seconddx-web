@@ -1,0 +1,29 @@
+volumes:
+  postgres_data: {}
+  postgres_data_backups: {}
+  redis_data: {}
+
+services:
+  seconddx-web:
+    stdin_open: true
+    tty: true
+    volumes:
+      - ..:/opt/services/seconddx-web:z
+
+  mailpit:
+    image: docker.io/axllent/mailpit:latest
+    hostname: mailpit
+    ports:
+      - "${MAILPIT_PORT:-8025}:${MAILPIT_PORT:-8025}"
+
+  celeryworker:
+    volumes:
+      - ..:/opt/services/seconddx-web:z
+
+  celerybeat:
+    volumes:
+      - ..:/opt/services/seconddx-web:z
+
+  flower:
+    volumes:
+      - ..:/opt/services/seconddx-web:z

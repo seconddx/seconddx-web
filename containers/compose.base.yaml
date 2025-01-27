@@ -1,0 +1,96 @@
+volumes:
+  postgres_data: {}
+  postgres_data_backups: {}
+  redis_data: {}
+  model_data: {}
+
+services:
+  seconddx-web-base:
+    build:
+      context: ..
+      dockerfile: ./containers/django/dev/Dockerfile
+    image: ghcr.io/seconddx/seconddx-web:dev
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ../.envs/.django
+      - ../.envs/.postgres
+    command: /opt/start
+    volumes:
+      - model_data:/home/seconddx/.cache/huggingface/hub
+
+  seconddx-web:
+    extends: seconddx-web-base
+    # NOTE: Any other service that is based on seconddx-web-base should set:
+    # build: !reset null
+    hostname: seconddx-web
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ../.envs/.django
+      - ../.envs/.postgres
+    ports:
+      - "${DJANGO_PORT:-8000}:${DJANGO_PORT:-8000}"
+    command: /opt/start
+
+  celeryworker:
+    extends: seconddx-web-base
+    hostname: celeryworker
+    build: !reset null
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /opt/start-celeryworker
+
+  celerybeat:
+    hostname: celerybeat
+    build: !reset null
+    extends: seconddx-web-base
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /opt/start-celerybeat
+
+  flower:
+    extends: seconddx-web-base
+    hostname: flower
+    build: !reset null
+    ports:
+      - "${CELERY_FLOWRER_PORT:-25555}:${CELERY_FLOWRER_PORT:-25555}"
+    command: /opt/start-flower
+
+  postgres:
+    build:
+      context: ..
+      dockerfile: ./containers/postgres/Dockerfile
+    image: seconddx-postgres
+    hostname: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_backups:/backups
+    env_file:
+      - ../.envs/.postgres
+    ports:
+      - "${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}"
+    command: postgres -p ${POSTGRES_PORT:-5432}
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -p ${POSTGRES_PORT} -U ${POSTGRES_USER} -d ${POSTGRES_DB}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: docker.io/redis:6
+    hostname: redis
+    ports:
+      - "${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
+    volumes:
+      - redis_data:/data

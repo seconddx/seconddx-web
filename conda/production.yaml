@@ -1,0 +1,15 @@
+name: seconddx-web
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - compilers
+  - nodejs >=18
+  - yarn
+  - poetry >=2.0.0
+  - pip
+  - pip:
+      - compose-go >=2.20.2,<2.31.0
+      - packaging>=24.2 # Poetry requires
+      - paginate # fix issues with distlib
