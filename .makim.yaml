@@ -1,0 +1,305 @@
+env-file: .envs/.django
+groups:
+  clean:
+    tasks:
+      tmp:
+        help: remove build artifacts, compiled files, and cache
+        backend: bash
+        run: |
+          find . -name '*.egg-info' -exec rm -rf {} +
+          find . -name '*.egg' -exec rm -f {} +
+          find . -name '*.pyc' -exec rm -f {} +
+          find . -name '*.pyo' -exec rm -f {} +
+          find . -name '__pycache__' -exec rm -rf {} +
+          find . -name '*~' -exec rm -f {} + || true
+          rm -rf build/
+          rm -rf dist/
+          rm -rf .eggs/
+          rm -f .coverage
+          rm -rf htmlcov/
+          rm -rf .pytest_cache
+          rm -rf .ruff_cache
+          rm -rf .mypy_cache
+
+  reactjs:
+    tasks:
+      install:
+        help: Install the dependencies for the frontend
+        dir: src/frontend
+        run: npm install
+      build:
+        help: Build the assets for reactjs
+        dir: src/frontend
+        run: npm run build
+      autobuild:
+        help: Build the assets for reactjs
+        run: python scripts/autobuild_frontend.py
+
+  django:
+    tasks:
+      bash:
+        env-file: .envs/.env
+        backend: bash
+        dir: src/backend
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          # note: it prints some messages like:
+          #   bash: cannot set terminal process group: Inappropriate ioctl for device
+          #   bash: no job control in this shell
+          # not sure how to handle that yet
+          bash --rcfile <(echo "source ~/.bashrc; conda activate mhai-web")
+
+      collectstatic:
+        env-file: .envs/.env
+        dir: src/backend
+        hooks:
+          pre-run:
+            - task: reactjs.install
+            - task: reactjs.build
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          python manage.py collectstatic -v 3 --noinput  # --clear
+
+      create-superuser:
+        help: create an admin user
+        args:
+          email:
+            help: Specify the username
+            type: string
+            required: True
+            interactive: True
+          password:
+            help: Specify the password
+            type: string
+            required: True
+            interactive: True
+          generate-token:
+            help: |
+              If the token is already created, don't create it again.
+            type: bool
+            default: False
+            action: store_true
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        dir: src/backend
+        backend: bash
+        run: |
+          export DJANGO_SUPERUSER_PASSWORD=${{ args.password }}
+          python manage.py createsuperuser --noinput --email ${{ args.email }}
+          if [ "${{ args.generate_token }}" == "True" ]; then
+            python manage.py drf_create_token ${{ args.email }}
+          fi
+
+      makemigrations:
+        help: Run django makemigrations command (just for development)
+        env-file: .envs/.env
+        dir: src/backend
+        args:
+          check:
+            help: |
+              Just check if the latest migration files were already created.
+            type: bool
+            action: store_true
+        matrix:
+          app:
+            - ""
+            - mhai_web
+            - user_profile
+            - ai_profile
+            - mhai_chat
+        backend: bash
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: python manage.py makemigrations ${{ matrix.app }}
+
+      migrate:
+        env-file: .envs/.env
+        dir: src/backend
+        matrix:
+          app:
+            - ""
+            - user_profile
+            - ai_profile
+            - mhai_chat
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: python manage.py migrate ${{ matrix.app }}
+
+      notebook:
+        help: Run the django environment in a jupyter notebook
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        dir: src/backend
+        run: python manage.py shell_plus --lab
+
+      runserver:
+        env-file: .envs/.env
+        hooks:
+          pre-run:
+            - task: reactjs.install
+            - task: reactjs.build
+        dir: src/backend
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          if "${{ env.SUGAR_GROUP }}" == "prod":
+              python manage.py compress
+          python manage.py runserver
+
+      shell:
+        help: Run the django environment in a jupyter notebook
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        dir: src/backend
+        run: python manage.py shell_plus
+
+  tests:
+    backend: bash
+    env-file: .envs/.env
+    tasks:
+      setup:
+        help: Setup the infrastructure for the tests
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          sugar --group test compose-ext restart --options -d
+
+      teardown:
+        help: Teardown the infrastructure for the tests
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          sugar --group test compose-ext stop
+
+      unit:
+        help: Generate coverage data with pytest
+        env-file: .envs/.env
+        args:
+          settings:
+            help: Specify the Django settings module
+            type: string
+            default: "config.settings.test"
+          app:
+            help: The name of the app
+            type: string
+            default: ""
+          append:
+            help: Coverage append flag
+            type: bool
+            action: store_true
+            default: ""
+          params:
+            help: Extra params for the test
+            type: string
+            default: ""
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        hooks:
+          pre-run:
+            - task: tests.setup
+          post-run:
+            - task: tests.teardown
+        run: |
+          COVERAGE_FLAG=${{ "--cov-append" if args.append else "" }}
+          pytest --cov=. $COVERAGE_FLAG \
+            --ds=${{ args.settings }} ${{ args.params }} ${{ args.app }}
+
+      cov-report:
+        help: Generate coverage report
+        env-file: .envs/.env
+        env:
+          POSTGRES_HOST: localhost
+          REDIS_HOST: localhost
+        run: |
+          coverage report -m --skip-empty
+
+      unit-cov:
+        help: Run the same the same tests executed on CI
+        args:
+          params:
+            help: Specify parameters to be used for tests
+            type: string
+            default: "-v 3"
+          settings:
+            help: Specify the django settings module
+            type: string
+            default: "config.settings.test"
+        hooks:
+          pre-run:
+            - task: tests.unit
+              args:
+                params: "${{ args.params }}"
+            - task: tests.cov-report
+
+  nginx:
+    tasks:
+      proxydomain:
+        help: Create SSL proxy configuration with CertBot for a domain
+        env-file: .envs/.env
+        run: |
+          python ./containers/nginx/scripts/generate_proxy_ui.py
+      generate-certificate:
+        help: Generate certificate
+        env-file: .envs/.env
+        run: |
+          bash ./containers/nginx/scripts/generate-certificates.sh
+      setup:
+        hooks:
+          pre-run:
+            - task: nginx.proxydomain
+            - task: nginx.generate-certificate
+
+  docs:
+    tasks:
+      build:
+        help: Build documentation
+        run: |
+          mkdocs build --config-file mkdocs.yaml
+
+      preview:
+        help: Preview documentation page locally
+        run: |
+          mkdocs serve --watch docs --config-file mkdocs.yaml
+
+  release:
+    vars:
+      app: |
+        npx --yes \
+          -p semantic-release \
+          -p conventional-changelog-conventionalcommits \
+          -p "@semantic-release/commit-analyzer" \
+          -p "@semantic-release/release-notes-generator" \
+          -p "@semantic-release/changelog" \
+          -p "@semantic-release/exec" \
+          -p "@semantic-release/github" \
+          -p "@semantic-release/git" \
+          -p "semantic-release-replace-plugin@1.2.7" \
+          semantic-release
+
+    tasks:
+      ci:
+        help: run semantic release on CI
+        run: ${{ vars.app }} --ci
+
+      dry:
+        help: run semantic release in dry-run mode
+        run: |
+          ${{ vars.app }} --dry-run
