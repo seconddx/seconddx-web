@@ -95,10 +95,23 @@ function About() {
         <section>
           <h2>Why SecondDx?</h2>
           <ul>
-            <li><strong>Faster & More Accurate Diagnoses</strong>: Reduce uncertainty and provide timely medical insights.</li>
-            <li><strong>Patient-Centered Approach</strong>: Empower patients with comprehensive second opinions.</li>
-            <li><strong>Enhanced Collaboration</strong>: Facilitate doctor-to-doctor collaboration with AI-powered tools.</li>
-            <li><strong>Medical Expertise & AI Synergy</strong>: A seamless blend of technology and human expertise for the best diagnostic outcomes.</li>
+            <li>
+              <strong>Faster & More Accurate Diagnoses</strong>:
+              Reduce uncertainty and provide timely medical insights.
+            </li>
+            <li>
+              <strong>Patient-Centered Approach</strong>:
+              Empower patients with comprehensive second opinions.
+            </li>
+            <li>
+              <strong>Enhanced Collaboration</strong>:
+              Facilitate doctor-to-doctor collaboration with AI-powered tools.
+            </li>
+            <li>
+              <strong>Medical Expertise & AI Synergy</strong>:
+              A seamless blend of technology and human expertise for the best
+              diagnostic outcomes.
+            </li>
           </ul>
         </section>
 
