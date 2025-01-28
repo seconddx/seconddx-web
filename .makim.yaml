@@ -122,7 +122,6 @@ groups:
         matrix:
           app:
             - ""
-            - "seconddx_web"
         env:
           POSTGRES_HOST: localhost
           REDIS_HOST: localhost
