@@ -13,12 +13,16 @@ function Home() {
         <div className="row align-items-center">
           {/* Text Content */}
           <div className="col-md-6">
-            <h2 className="mb-4">About SecondDX</h2>
+            <h2 className="mb-4">
+              Welcome to SecondDx: AI-Powered Second Opinion for Medical Diagnostics
+            </h2>
+            <h3 className="mb-4">Get a Reliable Second Opinion with Cutting-Edge AI</h3>
             <p>
-              At SecondDX, we believe that mental health support should be accessible, immediate, and personalized. Leveraging cutting-edge AI technology, our platform offers early intervention tools to help individuals navigate mental health challenges before they escalate.
-            </p>
-            <p>
-              Our mission is to provide a seamless blend of technology and human empathy, ensuring that everyone has the resources they need to maintain their mental well-being. Whether you're seeking companionship through AI interactions or professional assistance, SecondDX is here to support you every step of the way.
+              At SecondDx, we empower doctors and patients with AI-driven
+              medical insights for a second opinion on diagnoses. By
+              integrating anamnesis records, MRI scans, CT scans, and laboratory
+              test results, our platform enhances diagnostic accuracy and
+              provides comprehensive health prognostics.
             </p>
             <a href="#cta" className="btn btn-primary">
               Get Started
@@ -32,25 +36,20 @@ function Home() {
 
       {/* Features Section */}
       <section id="features" className="mb-5">
-        <h2 className="text-center mb-4">Our Features</h2>
+        <h2 className="text-center mb-4">Why Choose SecondDx?</h2>
         <div className="row g-4">
 
           {/* Feature 1 */}
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
-              <img src={aiDrivenImg} className="card-img-top" alt="AI-Driven Chat" />
+              <img src={aiDrivenImg} className="card-img-top" alt="Comprehensive Anamnesis & Contextual Analysis" />
               <div className="card-body">
-                <h5 className="card-title text-center">AI-Driven Chat</h5>
+                <h5 className="card-title text-center">
+                  Comprehensive Anamnesis & Contextual Analysis
+                </h5>
                 <p className="card-text">
-                  Engage with a compassionate AI companion that understands and supports
-                  your mental well-being. Our AI-driven chat provides a safe and non-judgmental
-                  space where you can freely express your thoughts and feelings. Leveraging
-                  advanced natural language processing, the AI listens attentively, offers
-                  personalized insights, and delivers tailored coping strategies to help you
-                  navigate through challenging emotions. Whether you're seeking someone to talk
-                  to during difficult times or looking for guidance to manage stress and anxiety,
-                  our intelligent chatbot is available around the clock to support your mental
-                  health journey.
+                  Our AI analyzes patient history alongside medical
+                  reports to ensure accurate diagnostic insights.
                 </p>
               </div>
             </div>
@@ -59,19 +58,15 @@ function Home() {
           {/* Feature 2 */}
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
-              <img src={surveyImg} className="card-img-top" alt="Surveys & Assessments" />
+              <img src={surveyImg} className="card-img-top"
+                alt="Advanced AI for Medical Imaging & Reports" />
               <div className="card-body">
-                <h5 className="card-title text-center">Surveys & Assessments</h5>
+                <h5 className="card-title text-center">
+                  Advanced AI for Medical Imaging & Reports
+                </h5>
                 <p className="card-text">
-                  Regular check-ins through personalized surveys to monitor and assess
-                  your mental health. Our platform offers thoughtfully designed surveys
-                  that adapt to your unique experiences and needs. These assessments
-                  provide a comprehensive overview of your emotional and psychological
-                  state over time, enabling you to track your progress and identify
-                  patterns or triggers that may affect your well-being. By engaging
-                  in consistent self-reflection, you gain valuable insights into your
-                  mental health, empowering you to make informed decisions and seek
-                  support when necessary.
+                  We process MRI, CT scans, and test results to detect patterns
+                  and provide detailed assessments.
                 </p>
               </div>
             </div>
@@ -80,18 +75,15 @@ function Home() {
           {/* Feature 3 */}
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
-              <img src={supportImg} className="card-img-top" alt="Professional Support" />
+              <img src={supportImg} className="card-img-top"
+                alt="Reliable & Transparent Second Opinions" />
               <div className="card-body">
-                <h5 className="card-title text-center">Professional Support</h5>
+                <h5 className="card-title text-center">
+                  Reliable & Transparent Second Opinions
+                </h5>
                 <p className="card-text">
-                  Access to licensed mental health professionals for personalized guidance
-                  and crisis intervention. Our platform connects you with certified
-                  therapists and counselors who are dedicated to supporting your mental
-                  well-being. Whether you're navigating through daily stresses or facing
-                  significant emotional challenges, our professionals provide tailored
-                  advice and evidence-based strategies to help you manage and overcome
-                  obstacles. In moments of crisis, immediate intervention is available to
-                  ensure you receive the urgent support you need.
+                  Designed to assist physicians and patients with data-driven
+                  insights, reducing uncertainty in medical decisions.
                 </p>
               </div>
             </div>
@@ -102,13 +94,71 @@ function Home() {
 
       {/* Call to Action Section */}
       <section id="cta" className="text-center">
-        <h2 className="mb-4">Join the SecondDX Community</h2>
+        <h2 className="mb-4">How It Works</h2>
+        <ul className="mb-4">
+          <li>
+            <strong>Upload Medical Reports</strong>:
+            Submit your MRI, CT scans, blood tests, or other
+            diagnostic files.
+          </li>
+          <li>
+            <strong>Record Anamnesis</strong>:
+            Provide relevant medical history to enrich the
+            AI-driven analysis.
+          </li>
+          <li>
+              <strong>AI-Driven Insights</strong>:
+              Our AI processes the data, comparing it with
+              extensive medical case studies.
+          </li>
+          <li>
+            <strong>Specialist Review</strong>:
+            Physicians verify AI-generated insights for
+            a comprehensive second opinion.
+          </li>
+          <li>
+            <strong>Receive Your Report</strong>:
+            Get a detailed second opinion to make informed
+            healthcare decisions.
+          </li>
+        </ul>
+      </section>
+
+      <section id="cta" className="text-center">
+        <h2 className="mb-4">Who Can Benefit from SecondDx?</h2>
+        <ul className="mb-4">
+          <li>
+            <strong>Doctors & Radiologists</strong>:
+            Enhance diagnostic accuracy and streamline patient assessments.
+          </li>
+          <li>
+            <strong>Patients Seeking a Second Opinion</strong>:
+            Gain confidence in medical decisions with AI-assisted diagnostics.
+          </li>
+          <li>
+            <strong>Hospitals & Clinics</strong>:
+            Integrate AI-powered analysis into your workflow for more
+            efficient diagnostics.
+          </li>
+          <li>
+            <strong>Medical Researchers</strong>:
+            Utilize AI for deeper insights into complex medical cases.
+          </li>
+        </ul>
+      </section>
+
+      <section id="cta" className="text-center">
+        <h2 className="mb-4">The Future of AI-Driven Diagnostics is Here</h2>
         <p className="mb-4">
-          Take the first step towards better mental health. Sign up today and start your journey with SecondDX.
+          SecondDx combines state-of-the-art AI with medical expertise to
+          revolutionize the way second opinions are provided.
+          Whether you are a patient seeking clarity or a doctor
+          aiming for enhanced diagnostics, our platform is here to
+          support better healthcare decisions.
         </p>
-        <a href="#signup" className="btn btn-primary btn-lg">
-          Get Started
-        </a>
+        <p className="mb-4">
+          📩 Join the Future of AI in Medical Diagnostics – Contact Us Today!
+        </p>
       </section>
 
     </div>

@@ -5,49 +5,119 @@ function About() {
   return (
     <div className="About">
       <header className="About-header">
-        <h1>SecondDX Project</h1>
-        <section className="overview">
-          <h2>Overview</h2>
+        <h1>About SecondDX</h1>
+        <section>
+          <h2>Our Mission</h2>
           <p>
-            SecondDX (Mental Health AI) is an AI-driven platform designed for suicide prevention
-            by providing early intervention for individuals facing mental health challenges,
-            with a primary focus on anxiety and depression. The platform aims to support
-            individuals by recognizing their mental health condition, predicting potential
-            periods of crisis, and offering tailored interventions through its three main
-            pillars:
+            At SecondDx, our mission is to empower doctors and patients with
+            cutting-edge AI-driven medical diagnostics, ensuring accurate,
+            transparent, and reliable second opinions. We believe that
+            everyone deserves access to comprehensive diagnostic insights,
+            enhancing healthcare decisions with advanced technology and
+            medical expertise.
           </p>
-          <ol>
-            <li><strong>AI-Driven Chat:</strong> Interaction with a virtual AI persona to provide companionship and conversation.</li>
-            <li><strong>Surveys and Self-Assessments:</strong> Regular emotional and mental health check-ins through structured surveys.</li>
-            <li><strong>Professional Support (Premium Tier):</strong> Direct connection with mental health professionals for deeper assistance and crisis intervention.</li>
-          </ol>
         </section>
 
-        <section className="project-scope">
-          <h2>Project Scope</h2>
+        <section>
+          <h2>Who We Are</h2>
           <p>
             SecondDX combines AI technologies, surveys, and professional support to monitor and
             assess mental health conditions, focusing on factors that increase the risk of
             suicide. It employs a combination of pre-trained models and custom analytics to
             detect patterns of distress and trigger timely interventions.
           </p>
+        </section>
+
+        <section>
+          <h2>Who We Are</h2>
           <p>
-            The project includes the development of mobile and web applications and offers
-            both free and premium services, with the premium tier providing access to direct
-            mental health support.
+            SecondDx is a team of medical professionals, AI researchers, and
+            software engineers dedicated to improving healthcare diagnostics.
+            We bring together expertise in medical imaging, data science, and
+            AI-powered decision support systems to create a seamless platform
+            for enhanced medical second opinions.
           </p>
         </section>
 
-        <section className="future-directions">
-          <h2>Future Directions</h2>
+        <section>
+          <h2>What We Do</h2>
+          <ul>
+            <li>
+              <strong>AI-Assisted Diagnosis</strong>:
+              Our platform analyzes medical reports, including MRI, CT scans,
+              and laboratory results, to support accurate decision-making.
+            </li>
+            <li>
+              <strong>Context-Driven Insights</strong>: By integrating
+              anamnesis records, we provide a comprehensive clinical context
+              for better diagnostic interpretation.
+            </li>
+            <li>
+              <strong>Physician-Verified Assessments</strong>:
+              AI insights are reviewed by experienced medical specialists,
+              ensuring transparency and reliability.
+            </li>
+            <li>
+              <strong>Regulatory Compliance & Security</strong>:
+              We prioritize data privacy and security, fully adhering to
+              HIPAA & GDPR regulations.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Our Technology</h2>
+          <p>At the core of SecondDx is our AI-powered diagnostic engine, built using:</p>
+          <ul>
+            <li>
+              <strong>AI-Assisted Diagnosis</strong>:
+              Our platform analyzes medical reports, including MRI, CT scans,
+              and laboratory results, to support accurate decision-making.
+            </li>
+            <li>
+              <strong>Context-Driven Insights</strong>:
+              By integrating anamnesis records, we provide a comprehensive
+              clinical context for better diagnostic interpretation.
+            </li>
+            <li>
+              <strong>Physician-Verified Assessments</strong>:
+              AI insights are reviewed by experienced medical specialists,
+              ensuring transparency and reliability.
+            </li>
+            <li>
+              <strong>Regulatory Compliance & Security</strong>:
+              We prioritize data privacy and security, fully adhering to
+              HIPAA & GDPR regulations.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why SecondDx?</h2>
+          <ul>
+            <li><strong>Faster & More Accurate Diagnoses</strong>: Reduce uncertainty and provide timely medical insights.</li>
+            <li><strong>Patient-Centered Approach</strong>: Empower patients with comprehensive second opinions.</li>
+            <li><strong>Enhanced Collaboration</strong>: Facilitate doctor-to-doctor collaboration with AI-powered tools.</li>
+            <li><strong>Medical Expertise & AI Synergy</strong>: A seamless blend of technology and human expertise for the best diagnostic outcomes.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Looking Ahead</h2>
           <p>
-            The SecondDX project is actively seeking grants and partnerships to expand its reach
-            and continue developing its capabilities. We envision a world where mental
-            health support is accessible to everyone, anywhere, through innovative AI
-            technology.
+            We are committed to continuous innovation in medical AI, expanding
+            our capabilities to support even more complex diagnostic challenges.
+            Our vision is to make accurate, AI-driven second opinions accessible
+            to everyone, everywhere.
           </p>
+        </section>
+
+        <section>
+          <h2>Get in Touch</h2>
           <p>
-            For more information or to collaborate, please contact our team via connect@seconddx.com.
+            Want to learn more about SecondDx or partner with us?
+            Contact our team today and be part of the future of
+            AI-powered medical diagnostics!
           </p>
         </section>
 
