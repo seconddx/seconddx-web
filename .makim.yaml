@@ -118,14 +118,17 @@ groups:
 
       migrate:
         env-file: .envs/.env
-        dir: src/backend
         matrix:
           app:
             - ""
         env:
           POSTGRES_HOST: localhost
           REDIS_HOST: localhost
-        run: python manage.py migrate ${{ matrix.app }}
+        run: |
+          sugar compose-ext start --services postgres --options "-d"
+          pushd src/backend
+          python manage.py migrate ${{ matrix.app }}
+          popd
 
       notebook:
         help: Run the django environment in a jupyter notebook
