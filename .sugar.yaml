@@ -2,7 +2,7 @@ backend: compose
 env-file: .envs/.env
 defaults:
   group: ${{ env.SUGAR_GROUP }}
-  project-name: mhai
+  project-name: seconddx
 
 hooks:
   pre-run:
@@ -28,9 +28,9 @@ groups:
       - containers/compose.dev.yaml
     env-file: .envs/.env
     services:
-      default: mhai-web,postgres,mailpit,redis,celeryworker,celerybeat,flower
+      default: seconddx-web,postgres,mailpit,redis,celeryworker,celerybeat,flower
       available:
-        - name: mhai-web
+        - name: seconddx-web
         - name: postgres
         - name: mailpit
         - name: redis
@@ -55,9 +55,9 @@ groups:
       - containers/compose.prod.yaml
     env-file: .envs/.env
     services:
-      default: mhai-web,postgres,redis,celeryworker,celerybeat,flower,nginx
+      default: seconddx-web,postgres,redis,celeryworker,celerybeat,flower,nginx
       available:
-        - name: mhai-web
+        - name: seconddx-web
         - name: postgres
         - name: redis
         - name: celeryworker

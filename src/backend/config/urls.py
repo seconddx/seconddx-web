@@ -9,14 +9,8 @@ from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
-from seconddx_web.urls import urlpatterns as mhai_urls
-from mhai_chat.urls import urlpatterns as mhai_chat_urls
+from seconddx_web.urls import urlpatterns as seconddx_urls
 
-
-from ai_profile.urls import urlpatterns as ai_profile_views_urls
-from ai_profile.api.urls import urlpatterns as ai_profile_api_urls
-from user_profile.api.urls import urlpatterns as user_profile_api_urls
-from user_profile.urls import urlpatterns as user_profile_views_urls
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
@@ -25,10 +19,7 @@ urlpatterns = [
     path("users/", include("seconddx_web.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Application paths
-    *mhai_urls,
-    *mhai_chat_urls,
-    *user_profile_views_urls,
-    *ai_profile_views_urls,
+    *seconddx_urls,
     # Static files serving
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
@@ -54,10 +45,7 @@ urlpatterns += [
         name="api-docs",
     ),
     # Application API endpoints
-    path("api/ai-profile/", include(ai_profile_api_urls)),
-    path("api/profile/", include(user_profile_api_urls)),
-    # mhai_chat URLs under `api/chat/`
-    path("api/seconddx-chat/", include("mhai_chat.api.urls")),
+    # ...
 ]
 
 if settings.DEBUG:
