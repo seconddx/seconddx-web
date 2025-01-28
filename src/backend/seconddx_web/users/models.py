@@ -11,7 +11,7 @@ from .managers import UserManager
 
 class User(AbstractUser):
     """
-    Custom user model for SecondDX-Web with extended fields and history tracking.
+    User model for SecondDX-Web with extended fields and history tracking.
 
     This model includes modifications for supporting history tracking using
     Django Simple History's `HistoricalRecords`, allowing the capture of each

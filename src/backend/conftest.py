@@ -6,9 +6,9 @@ import pytest
 import yaml
 
 from ai_profile.models import AIProfile
-from seconddx_web.users.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
+from seconddx_web.users.models import User
 from user_profile.models import UserProfile
 
 

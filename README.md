@@ -1,9 +1,9 @@
 # SecondDX Web
 
-SecondDX Web is a comprehensive web-based platform designed to provide an engaging
-and supportive mental health experience. It combines advanced AI technologies, a
-user-friendly interface, and secure backend infrastructure to offer personalized
-mental health assistance and resources.
+SecondDX Web is a comprehensive web-based platform designed to provide an
+engaging and supportive mental health experience. It combines advanced AI
+technologies, a user-friendly interface, and secure backend infrastructure to
+offer personalized mental health assistance and resources.
 
 ## Overview
 
@@ -38,8 +38,8 @@ The SecondDX Web project integrates three major components:
 
 ### AI-Powered Mental Health Support
 
-- SecondDX leverages state-of-the-art AI models to analyze user messages and provide
-  empathetic, human-like responses.
+- SecondDX leverages state-of-the-art AI models to analyze user messages and
+  provide empathetic, human-like responses.
 - Advanced emotion and mental health evaluations (e.g., MentBERT, PsychBERT,
   emotion analysis) enrich user interactions.
 

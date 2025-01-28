@@ -280,3 +280,15 @@ seconddx_web/media/
 .ipython/
 .env
 .envs/*
+
+
+# Nginx
+containers/nginx/data/sites-available/*
+!containers/nginx/data/sites-available/.gitkeep
+containers/nginx/data/sites-enabled/*
+!containers/nginx/data/sites-enabled/.gitkeep
+
+# ignore config files generated in production only
+!containers/nginx/data/config/prod/prod.nginx.conf
+containers/nginx/data/config/staging/*
+*.pem

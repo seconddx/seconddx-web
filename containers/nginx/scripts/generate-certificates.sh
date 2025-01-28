@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 # Check if sugar is avaiable
 if ! [ -x "$(command -v sugar)" ]; then
     echo "Error: sugar is not installed." >&2
@@ -52,13 +54,14 @@ EMAIL=${CERTBOT_EMAIL}
 echo "----> Creating dummy certificate for $DOMAINS ..."
 path="/etc/letsencrypt/live/$DOMAINS"
 
-sugar compose run --service certbot --options "--rm --remove-orphans" --cmd "--entrypoint" --cmd "mkdir -p $path"
-
-sugar compose run --service certbot --options "--rm --remove-orphans" --cmd "--entrypoint" "\
-  openssl req -x509 -nodes -newkey rsa:$RSA_KEY_SIZE -days 1\
-    -keyout "$path/privkey.pem" \
-    -out "$path/fullchain.pem" \
--subj "/CN=localhost""
+sugar compose run --service certbot \
+    --options "--rm --remove-orphans --entrypoint 'mkdir -p $path'"
+sugar compose run --service certbot \
+    --options "--rm --remove-orphans --entrypoint '\
+    openssl req -x509 -nodes -newkey rsa:$RSA_KEY_SIZE -days 1\
+        -keyout "$path/privkey.pem" \
+        -out "$path/fullchain.pem" \
+        -subj "/CN=localhost"'"
 echo
 
 echo "----> Starting nginx ..."
@@ -66,10 +69,10 @@ echo "----> Starting nginx ..."
 echo
 
 echo "----> Deleting dummy certificate for $DOMAINS ..."
-sugar compose run --service certbot --options --rm "--remove-orphans --entrypoint" "\
+sugar compose run --service certbot --options "--rm --remove-orphans --entrypoint '\
     rm -Rf /etc/letsencrypt/live/$DOMAINS && \
     rm -Rf /etc/letsencrypt/archive/$DOMAINS && \
-    rm -Rf /etc/letsencrypt/renewal/$DOMAINS.conf"
+    rm -Rf /etc/letsencrypt/renewal/$DOMAINS.conf'"
 echo
 
 
@@ -89,7 +92,7 @@ esac
 # Enable staging mode if needed
 if [ "${STAGING_MODE:-0}" != "0" ]; then staging_arg="--dry-run"; fi
 
-sugar compose run --service certbot --options --rm "--remove-orphans --entrypoint" "\
+sugar compose run --service certbot --options "--rm --remove-orphans --entrypoint '\
   certbot -v certonly --webroot -w /var/www/certbot \
     $staging_arg \
     $email_arg \
@@ -97,7 +100,7 @@ sugar compose run --service certbot --options --rm "--remove-orphans --entrypoin
     --rsa-key-size $RSA_KEY_SIZE \
     --agree-tos \
     --no-eff-email \
-    --force-renewal"
+    --force-renewal'"
 echo
 
 echo "----> Reloading nginx ..."

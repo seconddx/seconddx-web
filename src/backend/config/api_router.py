@@ -1,6 +1,6 @@
 from django.conf import settings
-from seconddx_web.users.api.views import UserViewSet
 from rest_framework.routers import DefaultRouter, SimpleRouter
+from seconddx_web.users.api.views import UserViewSet
 
 router = DefaultRouter() if settings.DEBUG else SimpleRouter()
 
