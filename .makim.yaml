@@ -145,14 +145,16 @@ groups:
           pre-run:
             - task: reactjs.install
             - task: reactjs.build
-        dir: src/backend
         env:
           POSTGRES_HOST: localhost
           REDIS_HOST: localhost
         run: |
+          sugar --group dev-host compose-ext restart --options "-d"
+          pushd src/backend
           if "${{ env.SUGAR_GROUP }}" == "prod":
               python manage.py compress
           python manage.py runserver
+          popd
 
       shell:
         help: Run the django environment in a jupyter notebook
