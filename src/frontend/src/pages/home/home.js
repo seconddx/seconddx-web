@@ -93,35 +93,33 @@ function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section id="cta" className="text-center">
+      <section id="cta">
         <h2 className="mb-4">How It Works</h2>
-        <ul className="mb-4">
-          <li>
+          <p>
             <strong>Upload Medical Reports</strong>:
             Submit your MRI, CT scans, blood tests, or other
             diagnostic files.
-          </li>
-          <li>
+          </p>
+          <p>
             <strong>Record Anamnesis</strong>:
             Provide relevant medical history to enrich the
             AI-driven analysis.
-          </li>
-          <li>
-              <strong>AI-Driven Insights</strong>:
-              Our AI processes the data, comparing it with
-              extensive medical case studies.
-          </li>
-          <li>
+          </p>
+          <p>
+            <strong>AI-Driven Insights</strong>:
+            Our AI processes the data, comparing it with
+            extensive medical case studies.
+          </p>
+          <p>
             <strong>Specialist Review</strong>:
             Physicians verify AI-generated insights for
             a comprehensive second opinion.
-          </li>
-          <li>
+          </p>
+          <p>
             <strong>Receive Your Report</strong>:
             Get a detailed second opinion to make informed
             healthcare decisions.
-          </li>
-        </ul>
+          </p>
       </section>
 
       <section id="cta" className="text-center">

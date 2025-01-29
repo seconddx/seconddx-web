@@ -37,6 +37,20 @@ groups:
         - name: celeryworker
         - name: celerybeat
         - name: flower
+  dev-host:
+    config-path:
+      - containers/compose.base.yaml
+      - containers/compose.dev.yaml
+    env-file: .envs/.env
+    services:
+      default: postgres,mailpit,redis,celeryworker,celerybeat,flower
+      available:
+        - name: postgres
+        - name: mailpit
+        - name: redis
+        - name: celeryworker
+        - name: celerybeat
+        - name: flower
 
   test:
     config-path:
