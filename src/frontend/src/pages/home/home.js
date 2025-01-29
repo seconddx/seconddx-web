@@ -20,9 +20,9 @@ function Home() {
             <p>
               At SecondDx, we empower doctors and patients with AI-driven
               medical insights for a second opinion on diagnoses. By
-              integrating anamnesis records, MRI scans, CT scans, and laboratory
-              test results, our platform enhances diagnostic accuracy and
-              provides comprehensive health prognostics.
+              integrating anamnesis records, MRI scans, CT scans, and
+              laboratory test results, our platform enhances diagnostic
+              accuracy and provides comprehensive health prognostics.
             </p>
             <a href="#cta" className="btn btn-primary">
               Get Started
@@ -36,20 +36,30 @@ function Home() {
 
       {/* Features Section */}
       <section id="features" className="mb-5">
-        <h2 className="text-center mb-4">Why Choose SecondDx?</h2>
+        <h2 className="text-center mb-4">Overview</h2>
         <div className="row g-4">
 
           {/* Feature 1 */}
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
-              <img src={aiDrivenImg} className="card-img-top" alt="Comprehensive Anamnesis & Contextual Analysis" />
+              <img src={aiDrivenImg}
+                className="card-img-top"
+                alt="Why Choose SecondDx?" />
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Comprehensive Anamnesis & Contextual Analysis
+                  Why Choose SecondDx?
                 </h5>
                 <p className="card-text">
-                  Our AI analyzes patient history alongside medical
-                  reports to ensure accurate diagnostic insights.
+                  SecondDx offers a unique approach to medical diagnostics
+                  by combining advanced AI with patient anamnesis and
+                  medical imaging analysis. Our platform ensures accurate
+                  diagnostic insights by analyzing patient history alongside
+                  medical reports. With state-of-the-art AI processing, we
+                  can detect patterns in MRI and CT scans, as well as
+                  interpret test results, leading to more reliable and
+                  transparent second opinions. Designed to assist both
+                  physicians and patients, SecondDx provides data-driven
+                  insights that reduce uncertainty in medical decisions.
                 </p>
               </div>
             </div>
@@ -58,15 +68,23 @@ function Home() {
           {/* Feature 2 */}
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
-              <img src={surveyImg} className="card-img-top"
-                alt="Advanced AI for Medical Imaging & Reports" />
+              <img src={surveyImg}
+                className="card-img-top"
+                alt="How It Works" />
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Advanced AI for Medical Imaging & Reports
+                  How It Works
                 </h5>
                 <p className="card-text">
-                  We process MRI, CT scans, and test results to detect patterns
-                  and provide detailed assessments.
+                  The process begins with uploading medical reports, including
+                  MRI, CT scans, blood tests, or other diagnostic files.
+                  Patients or physicians then provide relevant medical
+                  history to enrich the AI-driven analysis. Our AI processes
+                  the data, comparing it with extensive medical case studies
+                  and providing insights that are reviewed by specialists
+                  for added accuracy. Once the review is complete, a detailed
+                  second opinion report is generated, equipping users with
+                  the information needed to make informed healthcare decisions.
                 </p>
               </div>
             </div>
@@ -76,14 +94,21 @@ function Home() {
           <div className="col-md-4">
             <div className="card h-100 shadow-sm">
               <img src={supportImg} className="card-img-top"
-                alt="Reliable & Transparent Second Opinions" />
+                alt="Who Can Benefit from SecondDx?" />
               <div className="card-body">
                 <h5 className="card-title text-center">
-                  Reliable & Transparent Second Opinions
+                  Who Can Benefit from SecondDx?
                 </h5>
                 <p className="card-text">
-                  Designed to assist physicians and patients with data-driven
-                  insights, reducing uncertainty in medical decisions.
+                  Doctors and radiologists can enhance diagnostic accuracy
+                  and streamline patient assessments, while patients seeking
+                  a second opinion gain confidence in medical decisions
+                  with AI-assisted diagnostics. Hospitals and clinics benefit
+                  from integrating AI-powered analysis into their workflow,
+                  improving diagnostic efficiency. Additionally, medical
+                  researchers can utilize AI to derive deeper insights into
+                  complex medical cases, supporting innovation in healthcare
+                  diagnostics.
                 </p>
               </div>
             </div>
@@ -92,70 +117,15 @@ function Home() {
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section id="cta">
-        <h2 className="mb-4">How It Works</h2>
-          <p>
-            <strong>Upload Medical Reports</strong>:
-            Submit your MRI, CT scans, blood tests, or other
-            diagnostic files.
-          </p>
-          <p>
-            <strong>Record Anamnesis</strong>:
-            Provide relevant medical history to enrich the
-            AI-driven analysis.
-          </p>
-          <p>
-            <strong>AI-Driven Insights</strong>:
-            Our AI processes the data, comparing it with
-            extensive medical case studies.
-          </p>
-          <p>
-            <strong>Specialist Review</strong>:
-            Physicians verify AI-generated insights for
-            a comprehensive second opinion.
-          </p>
-          <p>
-            <strong>Receive Your Report</strong>:
-            Get a detailed second opinion to make informed
-            healthcare decisions.
-          </p>
-      </section>
-
-      <section id="cta" className="text-center">
-        <h2 className="mb-4">Who Can Benefit from SecondDx?</h2>
-        <ul className="mb-4">
-          <li>
-            <strong>Doctors & Radiologists</strong>:
-            Enhance diagnostic accuracy and streamline patient assessments.
-          </li>
-          <li>
-            <strong>Patients Seeking a Second Opinion</strong>:
-            Gain confidence in medical decisions with AI-assisted diagnostics.
-          </li>
-          <li>
-            <strong>Hospitals & Clinics</strong>:
-            Integrate AI-powered analysis into your workflow for more
-            efficient diagnostics.
-          </li>
-          <li>
-            <strong>Medical Researchers</strong>:
-            Utilize AI for deeper insights into complex medical cases.
-          </li>
-        </ul>
-      </section>
-
       <section id="cta" className="text-center">
         <h2 className="mb-4">The Future of AI-Driven Diagnostics is Here</h2>
         <p className="mb-4">
-          SecondDx combines state-of-the-art AI with medical expertise to
-          revolutionize the way second opinions are provided.
-          Whether you are a patient seeking clarity or a doctor
-          aiming for enhanced diagnostics, our platform is here to
-          support better healthcare decisions.
-        </p>
-        <p className="mb-4">
-          📩 Join the Future of AI in Medical Diagnostics – Contact Us Today!
+          SecondDx is at the forefront of AI-enhanced medical diagnostics,
+          providing accurate and reliable second opinions. Whether you are
+          a patient seeking clarity or a doctor looking for enhanced
+          diagnostic tools, our platform is designed to support better
+          healthcare decisions. Contact us today and be part of the future
+          of AI-powered medical diagnostics.
         </p>
       </section>
 
