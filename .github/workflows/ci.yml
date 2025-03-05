@@ -143,6 +143,7 @@ jobs:
           poetry config virtualenvs.create false
           poetry check
           poetry install
+          pip show rago
 
       - name: Build the Stack
         run: sugar compose build
