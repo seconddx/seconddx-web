@@ -14,7 +14,6 @@ from django.utils.translation import gettext_lazy as _
 
 from seconddx_web.users.forms import UserAdminChangeForm
 from seconddx_web.users.models import User
-from seconddx_web.users.tests.factories import UserFactory
 from seconddx_web.users.views import (
     UserRedirectView,
     UserUpdateView,
@@ -87,7 +86,7 @@ class TestUserRedirectView:
 class TestUserDetailView:
     def test_authenticated(self, user: User, rf: RequestFactory):
         request = rf.get("/fake-url/")
-        request.user = UserFactory()
+        request.user = user
         response = user_detail_view(request, pk=user.pk)
 
         assert response.status_code == HTTPStatus.OK
