@@ -47,6 +47,9 @@ dependencies = [
   "torch (>=2.3.0,<3.0.0)",
   "uvicorn[standard] (>=0.30.6,<0.31.0)",
   "django-stronghold >=0.4.0",
+  "rago >=0.12.0",
+  "torch >=2.5.0",    
+  "torchvision ==0.20.0",
 ]
 
 [build-system]
@@ -63,12 +66,11 @@ python = ">=3.12,<3.13"
 blis = "<1.2"
 numpy = "<2"
 torch = [
-  { version = "2.6.0", source = "pytorch-cpu" },
+  {version = "==2.5.0", source="pytorch-cpu"},
 ]
 torchvision = [
-  { version = "0.21.0", source = "pytorch-cpu" },
+  {version = "==0.20.0", source="pytorch-cpu"},
 ]
-rago = "^0.12.0"
 
 [tool.poetry.group.dev.dependencies]
 makim = "1.19.0"
