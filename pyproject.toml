@@ -6,7 +6,7 @@ authors = [
   { name = "Ivan Ogasawara", email = "ivan.ogasawara@gmail.com" }
 ]
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.10,<3.12"
 
 dependencies = [
   "python-slugify >=8.0.4",
@@ -34,7 +34,7 @@ dependencies = [
   "sentry-sdk >=2.14.0",
   "django-anymail >=12.0",
   "django-simple-history >=3.7.0",
-  "openai >=1.30.1      ",
+  "openai >=1.30.1",
   "dash >=2.17.0",
   "plotly >=5.22.0",
   "pandas >=2.2.2",
@@ -44,9 +44,8 @@ dependencies = [
   "django-stronghold >=0.4.0",
   "psycopg[pool,binary] (>=3.2.4)",
   "django-allauth[mfa] (>=65.0.1,<66.0.0)",
-  "torch (>=2.3.0,<3.0.0)",
   "uvicorn[standard] (>=0.30.6,<0.31.0)",
-  "django-stronghold >=0.4.0",
+  "rago >=0.12.0"
 ]
 
 [build-system]
@@ -54,15 +53,15 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+python = ">=3.10,<3.12"
 blis = "<1.2"
 numpy = "<2"
-torch = [
-  {version = ">=2.5.0", source="pytorch-cpu"},
-]
-torchvision = [
-  {version = ">=0.20.0", source="pytorch-cpu"},
-]
+
+torch = { version = "2.5.0+cpu", source = "pytorch-cpu" }
+torchvision = { version = "0.20.0+cpu", source = "pytorch-cpu", optional = true }
+
+[tool.poetry.extras]
+torchvision = ["torchvision"]
 
 [tool.poetry.group.dev.dependencies]
 makim = "1.19.0"
@@ -100,15 +99,16 @@ mkdocs-material = ">=9.1.15"
 mkdocstrings = {version=">=0.24.3", extras=["python"]}
 mkdocs-gen-files = ">=0.5.0"
 
-[tool.poetry]
-packages = [
-  {include = "*", from="src/backend"},
-]
 
 [[tool.poetry.source]]
 name = "pytorch-cpu"
 url = "https://download.pytorch.org/whl/cpu"
 priority = "supplemental"
+
+[tool.poetry]
+packages = [
+  {include = "*", from="src/backend"},
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -131,7 +131,7 @@ omit = [
 plugins = ["django_coverage_plugin"]
 
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.10"
 check_untyped_defs = true
 ignore_missing_imports = true
 warn_unused_ignores = true

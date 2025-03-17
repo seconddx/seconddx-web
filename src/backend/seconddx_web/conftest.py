@@ -1,3 +1,5 @@
+from typing import cast
+
 import pytest
 
 from seconddx_web.users.models import User
@@ -11,4 +13,5 @@ def _media_storage(settings, tmpdir) -> None:
 
 @pytest.fixture
 def user(db) -> User:
-    return UserFactory()
+    """Fixture that returns a test user."""
+    return cast(User, UserFactory())
